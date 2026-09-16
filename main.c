@@ -1,26 +1,32 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include "lista_sequencial.h"
 
 
 
  int main(){
-     int encerrar;
+     char decisao[11];
+     char f[] = "encerrar";
+     int i;
      do {
-    printf("\n======================= \n");
+    printf("=======================\n");
     printf("==== MENU DA LISTA ====\n");
     printf("=======================\n ");
 
 lista_sequencial();
 
-
-printf("\n digite -1 para encerrar o programa: ");
-
-    scanf("%d", &encerrar);
+printf("\n digite encerrar para finalizar o programa ou digite continuar para repetir a ordem: ");
+    scanf("%10s", decisao);
 
 
+   }while(strcmp(decisao,f)!= 0);
 
-     }while(encerrar != -1);
-      return 0;
-}
+   printf("programa encerrado");
+    return 0;
+ }
+
+
+
+
 
