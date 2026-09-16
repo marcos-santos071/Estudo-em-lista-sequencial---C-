@@ -17,14 +17,22 @@
  void inicializar(ListaSequencial *lista) {
    (*lista).tamanho = 0;
  }
+void exibir(const ListaSequencial *lista){
+    if(lista->tamanho == 0){
+     printf("\nA lista está vazia\n");
+        return;
+    }
+    printf("\nA lista contem (%d/%d)", lista->tamanho, TAM_MAX);
+    for(int i = 0; i < lista->tamanho; i++){
+        printf("n° da posição %d: %d",i+1, lista->dados[i]);
+    }
+}
 
- void inserir(){
-int valor;
-printf("Digite a posicao que voce quer adicionar um numero:");scanf("%d", &valor);
 
-int inserir(ListaSequencial *lista, int posicao, int valor){
+int inserir_posicao(ListaSequencial *lista, int posicao, int valor){
     if ((*lista).tamanho >= TAM_MAX || posicao < 0 || posicao > lista->tamanho){
             printf("Posicao invalida ou a lista esta completa");
+            return 0;
 }
 
     for(int i = (*lista).tamanho; i> posicao; i--){
@@ -37,8 +45,16 @@ int inserir(ListaSequencial *lista, int posicao, int valor){
     (*lista).dados[posicao] = valor; (*lista).tamanho++;
 
    }
- }
 
+   int inserir_final(ListaSequencial *lista,int valor){
+       if(lista->tamanho >= TAM_MAX){
+        printf("\nfalha: Lista cheia!");
+        return 0;
+       }
+    lista->dados[lista->tamanho] = valor;
+    lista->tamanho++;
+    return 1;
+   }
 
 
 void lista_sequencial(){
@@ -67,7 +83,4 @@ for (i = 0; i < Vusu; i++){
 
     }
 }
-
-
-
 #endif
