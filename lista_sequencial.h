@@ -22,9 +22,9 @@ void exibir(const ListaSequencial *lista){
      printf("\nA lista está vazia\n");
         return;
     }
-    printf("\nA lista contem (%d/%d)", lista->tamanho, TAM_MAX);
+    printf("\nA lista contem (%d/%d)\n", lista->tamanho, TAM_MAX);
     for(int i = 0; i < lista->tamanho; i++){
-        printf("n° da posição %d: %d",i+1, lista->dados[i]);
+        printf("\nn° da posição %d: %d\n",i, lista->dados[i]);
     }
 }
 
@@ -35,14 +35,12 @@ int inserir_posicao(ListaSequencial *lista, int posicao, int valor){
             return 0;
 }
 
-    for(int i = (*lista).tamanho; i> posicao; i--){
+    for(int i = lista->tamanho; i> posicao; i--){
         (*lista).dados[i] = (*lista).dados[i - 1];
 }
 
-    printf("Digite o valor que voce quer adicionar na posicao %d:", posicao);
-    scanf("%d", &valor);
-
-    (*lista).dados[posicao] = valor; (*lista).tamanho++;
+    (*lista).dados[posicao] = valor;
+    (*lista).tamanho++;
 
    }
 
@@ -57,30 +55,29 @@ int inserir_posicao(ListaSequencial *lista, int posicao, int valor){
    }
 
 
-void lista_sequencial(){
+void lista_sequencial(ListaSequencial *lista){
+    int i,Vusu, valorUsu;
 
-   int Vusu, i, valorUsu;
-   ListaSequencial lista;
-   inicializar(&lista);
+    printf("\nQuantos dados voce quer inserir? \n");
+    scanf("%d",&Vusu);
 
-   printf("Lista criada com capacidade para %d elementos. \n", TAM_MAX);
-   printf("Elementos atualmente armazenados: %d\n", lista.tamanho);
-   printf("\n Digite quantos dados voce quer adicionar dentro da capicadde maxima:\n");
-   scanf("%d",&Vusu);
-
+   if ((lista->tamanho + Vusu) >TAM_MAX){
+            printf("Quntidade pretendida excede ou a lista está cheia\n");
+            return;
+   }else if(Vusu <= 0){
+     printf("\nO valor digitado é inferior a quantidade minima(qtd min = 1)\n ");
+     return;
+   }
 
 for (i = 0; i < Vusu; i++){
-    printf("\n Digite o numero da posição %d: ", i+1);
+    printf("n° da posição %d:", i+1);
     scanf("%d", &valorUsu);
-    lista.dados[i] = valorUsu;
-    lista.tamanho++;
-    }
-
-    printf("\nlista atual:");
-    for(i = 0; i <Vusu; i++){
-        printf("\nposicao %d: ",i +1);
-        printf("%d", lista.dados[i]);
-
-    }
+    lista->dados[lista->tamanho] = valorUsu;
+    lista->tamanho++;
 }
+
+
+
+    }
+
 #endif
