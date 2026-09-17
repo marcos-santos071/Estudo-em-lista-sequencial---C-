@@ -1,6 +1,5 @@
 #ifndef lista_sequencial_h
 #define lista_sequencial_h
-
 #include <stdio.h>
 #include <stdlib.h>
 #define TAM_MAX 100
@@ -28,7 +27,7 @@ void exibir(const ListaSequencial *lista){
     }
 }
 
-
+//ira inserir um valor especifico na posição que o usuario quiser
 int inserir_posicao(ListaSequencial *lista, int posicao, int valor){
     if ((*lista).tamanho >= TAM_MAX || posicao < 0 || posicao > lista->tamanho){
             printf("Posicao invalida ou a lista esta completa");
@@ -37,13 +36,13 @@ int inserir_posicao(ListaSequencial *lista, int posicao, int valor){
 
     for(int i = lista->tamanho; i> posicao; i--){
         (*lista).dados[i] = (*lista).dados[i - 1];
+        return 1;
 }
 
     (*lista).dados[posicao] = valor;
     (*lista).tamanho++;
-
-   }
-
+}
+//ira inserir uma unidade de numero do usuario no final da lista
    int inserir_final(ListaSequencial *lista,int valor){
        if(lista->tamanho >= TAM_MAX){
         printf("\nfalha: Lista cheia!");
@@ -54,30 +53,28 @@ int inserir_posicao(ListaSequencial *lista, int posicao, int valor){
     return 1;
    }
 
-
-void lista_sequencial(ListaSequencial *lista){
+//ira inserir uma quantidade de dados desejada pelo usuario colocando no final da lista
+void qtd_Numeros(ListaSequencial *lista){
     int i,Vusu, valorUsu;
-
     printf("\nQuantos dados voce quer inserir? \n");
     scanf("%d",&Vusu);
 
    if ((lista->tamanho + Vusu) >TAM_MAX){
-            printf("Quntidade pretendida excede ou a lista está cheia\n");
+            printf("Quantidade pretendida excede ou a lista está cheia\n");
+            printf("\nVoltando ao incio.");
             return;
    }else if(Vusu <= 0){
      printf("\nO valor digitado é inferior a quantidade minima(qtd min = 1)\n ");
+     printf("\nVoltando ao incio.");
      return;
    }
 
-for (i = 0; i < Vusu; i++){
-    printf("n° da posição %d:", i+1);
+    for (i = 0; i < Vusu; i++){
+    printf("n° da posição %d:",lista->tamanho +1);
     scanf("%d", &valorUsu);
     lista->dados[lista->tamanho] = valorUsu;
-    lista->tamanho++;
+    (*lista).tamanho++;
+  }
 }
-
-
-
-    }
 
 #endif

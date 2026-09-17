@@ -5,6 +5,7 @@
 
 
 
+
  int main(){
     ListaSequencial minha_lista;
     inicializar(&minha_lista);
@@ -15,6 +16,9 @@
     printf("=======================\n");
     printf("==== MENU DA LISTA ====\n");
     printf("=======================\n ");
+
+    printf("\nUtilize o teclado numerico para digitar os numeros correspondentes as opções.");
+    printf("\nEx.: opcao 1 - digite o numero 1 para selecionar.\n");
 
     exibir(&minha_lista);
 
@@ -35,7 +39,9 @@ case 1:
     break;
 
 case 2:
-lista_sequencial(&minha_lista);
+    qtd_Numeros(&minha_lista);
+
+
 break;
 
 case 3:
@@ -59,8 +65,5 @@ default:
 
 
  }
-
-
-
 
 
