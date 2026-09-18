@@ -36,11 +36,10 @@ int inserir_posicao(ListaSequencial *lista, int posicao, int valor){
 
     for(int i = lista->tamanho; i> posicao; i--){
         (*lista).dados[i] = (*lista).dados[i - 1];
-        return 1;
 }
-
     (*lista).dados[posicao] = valor;
     (*lista).tamanho++;
+    return 1;
 }
 //ira inserir uma unidade de numero do usuario no final da lista
    int inserir_final(ListaSequencial *lista,int valor){
@@ -76,5 +75,73 @@ void qtd_Numeros(ListaSequencial *lista){
     (*lista).tamanho++;
   }
 }
+
+//ira buscar por um valor especifico
+void buscar_todos(ListaSequencial *lista, int Vusu){
+    int encontrados = 0;
+
+    for(int i = 0; i < (*lista).tamanho; i++){
+        if((*lista).dados[i] == Vusu){
+        printf("\Valor encontrado %d na posicao %d: \n",Vusu, i);
+        encontrados++;
+        }
+    }
+   if(encontrados == 0){
+    printf("\nO valor %d não está na lista.\n",Vusu);
+   }else{
+    printf("\nTotal de ocorrencias: %d\n", encontrados);
+   }
+}
+
+int buscar_posicao(ListaSequencial *lista, int posicaoProcurada){
+      for(int i = 0; i < lista->tamanho; i++){
+        if (lista->dados[i] == posicaoProcurada){
+            return 1;
+        }
+      }
+return -1;
+}
+
+
+
+
+
+//ira excluir um ponto especifico do codigo
+void exclusao(ListaSequencial *lista, int Vusu){
+   if(Vusu < 0){
+        printf("ERRO!! O valor digitado é inferior a lista.");
+    return;
+
+}else if(Vusu >= (*lista).tamanho){
+       printf("ERRO!! O valor digitado é superio ou igual a lista");
+       return;
+ }
+
+  for(int i = Vusu; i < lista->tamanho - 1; i++){
+    lista->dados[i] = lista->dados[i+1];
+  }
+  lista->tamanho--;
+  return;
+}
+//iraecluir pontos especificos do codigo
+void exclusao_qtd(ListaSequencial *lista, int valorVusu){
+    int Vusu;
+ if(valorVusu < 0){
+        printf("ERRO!! O valor digitado é inferior a lista.");
+    return;
+}else if(valorVusu>= (*lista).tamanho){
+       printf("ERRO!! O valor digitado é superio ou igual a lista");
+       return;
+ }
+
+    for (int i = 0; i < Vusu; i++){
+    printf("n° da posição %d:",lista->tamanho +1);
+    scanf("%d", &valorVusu);
+    lista->dados[i] = lista->dados[i+1];
+    (*lista).tamanho--;
+
+   }
+  return;
+ }
 
 #endif

@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1789670522 source:/home/marcos/Documents/Code block/estrutura de dados/Projeto em listas sequenciais/Lista sequencial/main.c
+1789691164 source:/home/marcos/Documents/Code block/estrutura de dados/Projeto em listas sequenciais/Lista sequencial/main.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
@@ -9,7 +9,7 @@
 	<stdio.h>
 	<stdlib.h>
 
-1789670720 /home/marcos/Documents/Code block/estrutura de dados/Projeto em listas sequenciais/Lista sequencial/lista_sequencial.h
+1789691212 /home/marcos/Documents/Code block/estrutura de dados/Projeto em listas sequenciais/Lista sequencial/lista_sequencial.h
 	<stdio.h>
 	<stdlib.h>
 
