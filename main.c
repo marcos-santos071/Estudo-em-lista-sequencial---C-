@@ -9,8 +9,7 @@
  int main(){
     ListaSequencial minha_lista;
     inicializar(&minha_lista);
-    char decisao[11], f[] = "encerrar";
-    int opcao, valor, pos, valorVusu, Vusu;
+    int opcao, valor, pos, valorVusu, Vusu, posicaoProcurada;
 
  do{
     printf("            =======================\n");
@@ -53,51 +52,70 @@ case 2:
 break;
 
 case 3:
-    printf("Digite o valor a ser inserido: ");
-    scanf("%d",&valor);
-    printf("Digite a posicao (0 a %d): ", minha_lista.tamanho);
+    printf("Digite a posicao onde deseja inserir (1 a %d): ", minha_lista.tamanho + 1);
     scanf("%d", &pos);
-    if (inserir_posicao(&minha_lista, pos, valor)){
-        printf("O valor inserido na posição %d com sucesso!",pos);
+    // Subtrai 1 para converter a posicao de usuario (1..N) para o indice do C (0..N-1)
+    if (inserir_posicao(&minha_lista, pos - 1, valor)) {
+        printf("O valor foi inserido na posição %d com sucesso!\n", pos);
     }
     break;
 
 case 4:
-    ListaSequencial *lista;
     int i;
-    printf("Digite a posicao que quer visualizar a partir do valor:",minha_lista.tamanho -1);
+   if(minha_lista.tamanho == 0){
+    printf("A lista esta vazia, peço que insira alguma valor");
+    break;
+   }
+    printf("Digite a posicao que quer visualizar a partir do valor:");
     scanf("%d", &Vusu);
   buscar_todos(&minha_lista,Vusu);
 
+
 break;
 
-case 5:
-    int posicao_encotrada;
+case 5: {
+    int valorEncontrado;
+    if (minha_lista.tamanho == 0) {
+        printf("A lista esta vazia, peço que insira algum valor.\n");
+        break;
+    }
 
-printf("\nDigite a posicao que voce quer encontrar o valor: ");
-scanf("%d", posicaoProcurada)
-buscar_posicao(&minha_lista, posicaoProcurada);
+    // Exibe limite correto de 1 ate o tamanho atual
+    printf("\nDigite a posicao que voce quer consultar (1 a %d): ", minha_lista.tamanho);
+    scanf("%d", &pos);
 
-posicao_encotrada = buscar_posicao(&minha_lista, posicaProcurada);
-
-if(posicao_encontrada != -1){
- printf("\nSucesso: a posicao  tem o valor  da lista", );
-}else{
-  printf("\nAtenção: a posicao   não existe");
+    // Envia pos - 1 para a funcao
+    if (buscar_posicao(&minha_lista, pos - 1, &valorEncontrado) != -1) {
+        printf("Posicao encontrada com sucesso!\n");
+        printf("Na posicao %d esta o valor: %d\n", pos, valorEncontrado);
+    } else {
+        printf("Posicao %d e invalida ou nao existe na lista.\n", pos);
+    }
+    break;
 }
-break;
 
 case 6:
-    printf("Digite a posicão que voce quer excluir de (0 a %d): ", minha_lista.tamanho -1);
+    if (minha_lista.tamanho == 0) {
+        printf("A lista esta vazia, peço que insira algum valor.\n");
+        break;
+    }
+
+    // Limite maximo para exclusao e a quantidade de elementos armazenados
+    printf("Digite a posicao que voce quer excluir (1 a %d): ", minha_lista.tamanho);
     scanf("%d", &pos);
-    exclusao(&minha_lista, pos);
+    exclusao(&minha_lista, pos - 1);
     break;
 
 case 7:
-  printf("Digite quantas posicoes voce quer excluir de (0 a %d): ", minha_lista.tamanho -1);
-    scanf("%d",&valorVusu);
-  exclusao_qtd(&minha_lista, pos);
-  break;
+    if (minha_lista.tamanho == 0) {
+        printf("A lista esta vazia! Nao ha elementos para excluir.\n");
+        break;
+    }
+    printf("Quantas posicoes voce deseja excluir (1 a %d)? ", minha_lista.tamanho);
+    scanf("%d", &Vusu);
+    // Envia a lista e a quantidade de elementos que o usuario deseja excluir
+    exclusao_qtd(&minha_lista, Vusu);
+    break;
 
 case 0:
     printf("\nPrograma encerrado com sucesso!\n");
