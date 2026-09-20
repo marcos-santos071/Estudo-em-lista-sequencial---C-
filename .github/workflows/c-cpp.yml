@@ -1,23 +1,20 @@
-name: C/C++ CI
+name: C CI
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [ "main", "principal" ]
   pull_request:
-    branches: [ "main" ]
+    branches: [ "main", "principal" ]
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
 
     steps:
     - uses: actions/checkout@v4
-    - name: configure
-      run: ./configure
-    - name: make
-      run: make
-    - name: make check
-      run: make check
-    - name: make distcheck
-      run: make distcheck
+
+    - name: Compilar
+      run: gcc -Wall main.c -o meu_programa
+
+    - name: Executar
+      run: ./meu_programa
